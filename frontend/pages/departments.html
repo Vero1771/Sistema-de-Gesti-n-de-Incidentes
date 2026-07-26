@@ -1,0 +1,30 @@
+<div class="page-container">
+  <div class="toolbar">
+    <div class="search-wrapper">
+      <img src="../icons/search.svg" alt="Search" class="search-icon">
+      <input type="text" id="search-departments" placeholder="Buscar departamentos..." class="search-input">
+    </div>
+    <button id="btn-add-department" class="btn-primary">
+      <img src="../icons/add.svg" alt="Add" class="btn-icon">
+      Nuevo Departamento
+    </button>
+  </div>
+  <div class="table-container">
+    <div id="departments-loader" class="loader-container" style="display:none;">
+      <div class="loader-spinner"></div>
+    </div>
+    <table id="departments-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Trabajadores</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="departments-tbody">
+        <tr><td colspan="4" class="loading">Cargando departamentos...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

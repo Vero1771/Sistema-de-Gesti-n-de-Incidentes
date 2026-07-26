@@ -1,0 +1,33 @@
+<div class="page-container">
+  <div class="toolbar">
+    <div class="search-wrapper">
+      <img src="../icons/search.svg" alt="Search" class="search-icon">
+      <input type="text" id="search-reports" placeholder="Buscar reportes..." class="search-input">
+    </div>
+    <button id="btn-add-report" class="btn-primary">
+      <img src="../icons/add.svg" alt="Add" class="btn-icon">
+      Nuevo Reporte
+    </button>
+  </div>
+  <div class="table-container">
+    <div id="reports-loader" class="loader-container" style="display:none;">
+      <div class="loader-spinner"></div>
+    </div>
+    <table id="reports-table">
+      <thead>
+        <tr>
+          <th>Trabajador</th>
+          <th>Titulo</th>
+          <th>Tipo</th>
+          <th>Severidad</th>
+          <th>Estado</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="reports-tbody">
+        <tr><td colspan="7" class="loading">Cargando reportes...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

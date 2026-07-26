@@ -1,0 +1,31 @@
+<div class="page-container">
+  <div class="toolbar">
+    <div class="search-wrapper">
+      <img src="../icons/search.svg" alt="Search" class="search-icon">
+      <input type="text" id="search-work-centers" placeholder="Buscar centros..." class="search-input">
+    </div>
+    <button id="btn-add-work-center" class="btn-primary">
+      <img src="../icons/add.svg" alt="Add" class="btn-icon">
+      Nuevo Centro
+    </button>
+  </div>
+  <div class="table-container">
+    <div id="work-centers-loader" class="loader-container" style="display:none;">
+      <div class="loader-spinner"></div>
+    </div>
+    <table id="work-centers-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Ubicacion</th>
+          <th>Trabajadores</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="work-centers-tbody">
+        <tr><td colspan="5" class="loading">Cargando centros...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
