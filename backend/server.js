@@ -6,6 +6,8 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const departmentRoutes = require('./routes/departmentRoutes');
 const workCenterRoutes = require('./routes/workCenterRoutes');
+const workerRoutes = require('./routes/workerRoutes');
+const reportRoutes = require('./routes/reportRoutes');
 
 connectDB();
 
@@ -20,6 +22,8 @@ const RATE_LIMIT_MAX = parseInt(process.env.RATE_LIMIT_MAX) || 100;
 app.use('/api/auth', authRoutes);
 app.use('/api/departments', departmentRoutes);
 app.use('/api/work-centers', workCenterRoutes);
+app.use('/api/workers', workerRoutes);
+app.use('/api/reports', reportRoutes);
 
 // CORS
 app.use(cors({
