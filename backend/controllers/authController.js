@@ -5,6 +5,7 @@ const register = async (req, res) => {
   try {
     const { nombre, email, password } = req.body;
 
+    // Verificar si el usuario ya existe
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({
@@ -14,13 +15,17 @@ const register = async (req, res) => {
       });
     }
 
+    // Hash de la contraseña
     const hashedPassword = await hashPassword(password);
+
+    // Crear usuario
     const user = await User.create({
       nombre,
       email,
       password: hashedPassword
     });
 
+    // Generar token
     const token = generateToken(user._id);
 
     res.status(201).json({
@@ -48,6 +53,7 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Buscar usuario
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({
@@ -57,6 +63,7 @@ const login = async (req, res) => {
       });
     }
 
+    // Verificar contraseña
     const isValid = await comparePassword(password, user.password);
     if (!isValid) {
       return res.status(401).json({
@@ -66,6 +73,7 @@ const login = async (req, res) => {
       });
     }
 
+    // Generar token
     const token = generateToken(user._id);
 
     res.json({

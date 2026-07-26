@@ -87,6 +87,7 @@ const WorkerSchema = new mongoose.Schema({
   timestamps: true
 });
 
+// Índices para búsquedas
 WorkerSchema.index({ 
   primer_nombre: 'text', 
   primer_apellido: 'text', 
@@ -94,6 +95,7 @@ WorkerSchema.index({
   email: 'text'
 });
 
+// Middleware para sanitizar email
 WorkerSchema.pre('save', function(next) {
   if (this.email === '') {
     this.email = null;

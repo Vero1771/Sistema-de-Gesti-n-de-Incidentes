@@ -1,13 +1,16 @@
 {
-  "name": "sistema-gestion-incidentes",
+  "name": "sistema-de-gestion-de-incidentes",
   "version": "2.0.0",
-  "description": "Sistema de automatización de registro y seguimiento de incidentes",
+  "description": "Sistema de automatización de registro y seguimiento de incidentes (rpi) en materia de seguridad e higiene ocupacional en las instalaciones de CORPOELEC",
   "main": "backend/server.js",
   "scripts": {
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js",
     "seed": "node seed.js"
   },
+  "keywords": [],
+  "author": "Verónica Parra",
+  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

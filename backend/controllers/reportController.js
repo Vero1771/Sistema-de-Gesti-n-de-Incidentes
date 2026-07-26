@@ -1,6 +1,9 @@
 const Report = require('../models/Report');
 const Worker = require('../models/Worker');
 
+
+//  CREAR REPORTE
+
 const createReport = async (req, res) => {
   try {
     const worker = await Worker.findOne({
@@ -16,11 +19,13 @@ const createReport = async (req, res) => {
       });
     }
 
+    // Procesar datos
     const reportData = {
       ...req.body,
       userId: req.user.id
     };
 
+    // Si hay evidencia en base64, guardarla
     if (req.body.evidenciaData) {
       reportData.evidenciaData = req.body.evidenciaData;
       reportData.evidenciaTipo = req.body.evidenciaTipo || 'image/png';
@@ -28,6 +33,7 @@ const createReport = async (req, res) => {
     }
 
     const report = await Report.create(reportData);
+
     const populatedReport = await Report.findById(report._id)
       .populate('workerId', 'primer_nombre primer_apellido cedula email telefono');
 
@@ -44,6 +50,9 @@ const createReport = async (req, res) => {
     });
   }
 };
+
+
+//  OBTENER REPORTES
 
 const getReports = async (req, res) => {
   try {
@@ -70,6 +79,7 @@ const getReports = async (req, res) => {
       .populate('workerId', 'primer_nombre primer_apellido cedula email telefono')
       .sort({ fecha_reporte: -1 });
 
+    // Ocultar datos binarios grandes en listados
     const cleanReports = reports.map(r => {
       const obj = r.toObject();
       if (obj.evidenciaData) {
@@ -91,6 +101,9 @@ const getReports = async (req, res) => {
     });
   }
 };
+
+
+//  OBTENER REPORTE POR ID
 
 const getReportById = async (req, res) => {
   try {
@@ -122,6 +135,9 @@ const getReportById = async (req, res) => {
   }
 };
 
+
+//  ACTUALIZAR REPORTE
+
 const updateReport = async (req, res) => {
   try {
     if (req.body.workerId) {
@@ -140,6 +156,7 @@ const updateReport = async (req, res) => {
 
     const updateData = { ...req.body };
     
+    // Si hay nueva evidencia, actualizarla
     if (req.body.evidenciaData) {
       updateData.evidenciaData = req.body.evidenciaData;
       updateData.evidenciaTipo = req.body.evidenciaTipo || 'image/png';
@@ -174,6 +191,9 @@ const updateReport = async (req, res) => {
     });
   }
 };
+
+
+//  ELIMINAR REPORTE
 
 const deleteReport = async (req, res) => {
   try {

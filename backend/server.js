@@ -3,11 +3,12 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
+
 const authRoutes = require('./routes/authRoutes');
 const departmentRoutes = require('./routes/departmentRoutes');
 const workCenterRoutes = require('./routes/workCenterRoutes');
-const workerRoutes = require('./routes/workerRoutes');
 const reportRoutes = require('./routes/reportRoutes');
+const workerRoutes = require('./routes/workerRoutes');
 
 connectDB();
 
@@ -17,13 +18,6 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:5500';
 const RATE_LIMIT_WINDOW = parseInt(process.env.RATE_LIMIT_WINDOW) || 15;
 const RATE_LIMIT_MAX = parseInt(process.env.RATE_LIMIT_MAX) || 100;
-
-// Rutas
-app.use('/api/auth', authRoutes);
-app.use('/api/departments', departmentRoutes);
-app.use('/api/work-centers', workCenterRoutes);
-app.use('/api/workers', workerRoutes);
-app.use('/api/reports', reportRoutes);
 
 // CORS
 app.use(cors({
@@ -53,6 +47,13 @@ app.use('/api', limiter);
 // Body parser
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: true, limit: '100mb' }));
+
+// Rutas
+app.use('/api/auth', authRoutes);
+app.use('/api/departments', departmentRoutes);
+app.use('/api/work-centers', workCenterRoutes);
+app.use('/api/reports', reportRoutes);
+app.use('/api/workers', workerRoutes);
 
 app.get('/', (req, res) => {
   res.json({

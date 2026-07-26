@@ -12,6 +12,9 @@ const {
   getWorkerReports
 } = require('../controllers/workerController');
 
+
+//  ESQUEMAS DE VALIDACIÓN - CORREGIDOS
+
 const workerSchema = Joi.object({
   primer_nombre: Joi.string().min(1).max(50).required(),
   segundo_nombre: Joi.string().max(50).allow(null, '').optional(),
@@ -45,6 +48,9 @@ const updateWorkerSchema = Joi.object({
   fecha_nacimiento: Joi.date().iso().optional(),
   fecha_ingreso: Joi.date().iso().optional()
 });
+
+
+//  RUTAS
 
 router.use(authenticate);
 

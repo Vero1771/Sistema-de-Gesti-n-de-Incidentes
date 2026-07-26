@@ -59,6 +59,7 @@ const createWorker = async (req, res) => {
       });
     }
 
+    // Limpiar datos antes de guardar
     const cleanData = {
       primer_nombre: req.body.primer_nombre.trim(),
       segundo_nombre: req.body.segundo_nombre ? req.body.segundo_nombre.trim() : null,
@@ -191,6 +192,7 @@ const updateWorker = async (req, res) => {
       });
     }
 
+    // Construir objeto de actualización solo con campos enviados
     const updateData = {};
     const fields = ['primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 
                     'cedula', 'numero_trabajador', 'email', 'telefono', 'genero', 
@@ -206,7 +208,7 @@ const updateWorker = async (req, res) => {
       }
     }
 
-    // Verificar email único
+    // Verificar email único (si se está actualizando)
     if (updateData.email && updateData.email !== worker.email) {
       const existingEmail = await Worker.findOne({ 
         email: updateData.email,
@@ -281,6 +283,7 @@ const updateWorker = async (req, res) => {
       }
     }
 
+    // Si no hay datos para actualizar
     if (Object.keys(updateData).length === 0) {
       return res.status(400).json({
         success: false,
