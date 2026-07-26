@@ -51,19 +51,29 @@ Sistema de automatización para el registro y seguimiento de incidentes en mater
 sistema-gestion-incidentes/
 ├── backend/
 │   ├── config/
-│   │   └── db.js                 # Configuración de MongoDB
+│   │   ├── db.js                 # Configuración de conexión a MongoDB
+│   │   └── auth.js               # Configuración de JWT y encriptación
+│   ├── controllers/
+│   │   ├── authController.js     # Controlador de autenticación
+│   │   ├── departmentController.js # Controlador de departamentos
+│   │   ├── reportController.js   # Controlador de reportes
+│   │   ├── workCenterController.js # Controlador de centros de trabajo
+│   │   └── workerController.js   # Controlador de trabajadores
 │   ├── models/
-│   │   ├── User.js               # Modelo de usuarios
-│   │   ├── Worker.js             # Modelo de trabajadores
-│   │   ├── Department.js         # Modelo de departamentos
-│   │   ├── WorkCenter.js         # Modelo de centros de trabajo
-│   │   └── Report.js             # Modelo de reportes
+│   │   ├── Department.js         # Modelo de departamento
+│   │   ├── Report.js             # Modelo de reporte
+│   │   ├── User.js               # Modelo de usuario
+│   │   ├── WorkCenter.js         # Modelo de centro de trabajo
+│   │   └── Worker.js             # Modelo de trabajador
 │   ├── routes/
 │   │   ├── authRoutes.js         # Rutas de autenticación
-│   │   ├── workerRoutes.js       # Rutas de trabajadores
 │   │   ├── departmentRoutes.js   # Rutas de departamentos
+│   │   ├── reportRoutes.js       # Rutas de reportes
 │   │   ├── workCenterRoutes.js   # Rutas de centros de trabajo
-│   │   └── reportRoutes.js       # Rutas de reportes
+│   │   └── workerRoutes.js       # Rutas de trabajadores
+│   ├── middleware/
+│   │   ├── auth.js               # Middleware de autenticación
+│   │   └── validation.js         # Middleware de validación
 │   └── server.js                 # Punto de entrada del servidor
 ├── frontend/
 │   ├── pages/
