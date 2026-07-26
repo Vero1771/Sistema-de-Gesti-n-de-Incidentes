@@ -3,6 +3,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
+const authRoutes = require('./routes/authRoutes');
+const departmentRoutes = require('./routes/departmentRoutes');
+const workCenterRoutes = require('./routes/workCenterRoutes');
 
 connectDB();
 
@@ -12,6 +15,11 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:5500';
 const RATE_LIMIT_WINDOW = parseInt(process.env.RATE_LIMIT_WINDOW) || 15;
 const RATE_LIMIT_MAX = parseInt(process.env.RATE_LIMIT_MAX) || 100;
+
+// Rutas
+app.use('/api/auth', authRoutes);
+app.use('/api/departments', departmentRoutes);
+app.use('/api/work-centers', workCenterRoutes);
 
 // CORS
 app.use(cors({
