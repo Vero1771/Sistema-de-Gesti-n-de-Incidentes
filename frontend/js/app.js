@@ -11,7 +11,9 @@ const PAGES = {
       import('./components/workers.js').then(module => {
         module.loadWorkers();
         const addBtn = document.getElementById('btn-add-worker');
-        if (addBtn) addBtn.addEventListener('click', module.showWorkerForm);
+        if (addBtn) {
+          addBtn.addEventListener('click', () => module.showWorkerForm());
+        }
         const searchInput = document.getElementById('search-workers');
         if (searchInput) {
           searchInput.addEventListener('input', (e) => module.filterWorkers(e.target.value));
@@ -25,7 +27,9 @@ const PAGES = {
       import('./components/departments.js').then(module => {
         module.loadDepartments();
         const addBtn = document.getElementById('btn-add-department');
-        if (addBtn) addBtn.addEventListener('click', module.showDepartmentForm);
+        if (addBtn) {
+          addBtn.addEventListener('click', () => module.showDepartmentForm());
+        }
         const searchInput = document.getElementById('search-departments');
         if (searchInput) {
           searchInput.addEventListener('input', (e) => module.filterDepartments(e.target.value));
@@ -39,7 +43,9 @@ const PAGES = {
       import('./components/workCenters.js').then(module => {
         module.loadWorkCenters();
         const addBtn = document.getElementById('btn-add-work-center');
-        if (addBtn) addBtn.addEventListener('click', module.showWorkCenterForm);
+        if (addBtn) {
+          addBtn.addEventListener('click', () => module.showWorkCenterForm());
+        }
         const searchInput = document.getElementById('search-work-centers');
         if (searchInput) {
           searchInput.addEventListener('input', (e) => module.filterWorkCenters(e.target.value));
@@ -53,7 +59,9 @@ const PAGES = {
       import('./components/reports.js').then(module => {
         module.loadReports();
         const addBtn = document.getElementById('btn-add-report');
-        if (addBtn) addBtn.addEventListener('click', module.showReportForm);
+        if (addBtn) {
+          addBtn.addEventListener('click', () => module.showReportForm());
+        }
         const searchInput = document.getElementById('search-reports');
         if (searchInput) {
           searchInput.addEventListener('input', (e) => module.filterReports(e.target.value));
@@ -100,54 +108,6 @@ export async function loadPage(page) {
       container.innerHTML = `<div class="tab-content active"><p class="loading">Error al cargar la página</p></div>`;
     }
   }
-}
-
-function setupWorkersPage() {
-  const addBtn = document.getElementById('btn-add-worker');
-  if (addBtn) addBtn.addEventListener('click', () => showWorkerForm());
-
-  const searchInput = document.getElementById('search-workers');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => filterWorkers(e.target.value));
-  }
-
-  loadWorkers();
-}
-
-function setupDepartmentsPage() {
-  const addBtn = document.getElementById('btn-add-department');
-  if (addBtn) addBtn.addEventListener('click', () => showDepartmentForm());
-
-  const searchInput = document.getElementById('search-departments');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => filterDepartments(e.target.value));
-  }
-
-  loadDepartments();
-}
-
-function setupWorkCentersPage() {
-  const addBtn = document.getElementById('btn-add-work-center');
-  if (addBtn) addBtn.addEventListener('click', () => showWorkCenterForm());
-
-  const searchInput = document.getElementById('search-work-centers');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => filterWorkCenters(e.target.value));
-  }
-
-  loadWorkCenters();
-}
-
-function setupReportsPage() {
-  const addBtn = document.getElementById('btn-add-report');
-  if (addBtn) addBtn.addEventListener('click', () => showReportForm());
-
-  const searchInput = document.getElementById('search-reports');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => filterReports(e.target.value));
-  }
-
-  loadReports();
 }
 
 window.loadPage = loadPage;
